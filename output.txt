@@ -1,0 +1,12 @@
+
+================ VEHICLE ETA REPORT ================
+ Vehicle Plate    : RJ77A5713 (VEH_007)
+ Shipment ID      : SHIP_3511
+ Current Location : (24.2742, 83.1587)
+ Current Speed    : 55.72 km/h
+----------------------------------------------------
+ Estimated Time   : 980.8 minutes (~16.3 hrs)
+ Predicted Arrival: 2026-08-16 00:28:50.008926852+05:30
+ Delivery Status  : EARLY (Delta: -672.2 min)
+====================================================
+
