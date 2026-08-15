@@ -99,3 +99,6 @@ uvicorn==0.49.0
 watchdog==6.0.0
 watchfiles==1.2.0
 websockets==16.0
+psycopg2-binary
+fastapi
+uvicorn
