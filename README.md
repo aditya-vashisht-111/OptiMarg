@@ -1,131 +1,155 @@
-# FleetPulse Monorepo
+# 🚚 FleetPulse
 
-[![Status](https://img.shields.io/badge/Status-Active-brightgreen)](https://fleetpulse-monorepo.onrender.com/docs)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+**FleetPulse** is a FastAPI-based fleet management backend that connects fleet data, live vehicle tracking, and ML-powered ETA prediction.
 
-FleetPulse is a real-time fleet management and logistics tracking platform designed for high-concurrency event processing, route optimization, and telemetry monitoring.
+## ✨ Features
 
-📖 **API Documentation:** https://fleetpulse-monorepo.onrender.com/docs
-
----
-
-## 📂 Repository Structure
-
-```text
-fleetpulse-monorepo/
-├── apps/
-│   ├── api/            # REST & WebSocket API services
-│   ├── dashboard/      # Web management dashboard (Next.js / React)
-│   └── mobile-web/     # Driver & agent interface
-├── packages/
-│   ├── ui/             # Shared UI components & design system
-│   ├── database/       # ORM client, schemas, and migrations
-│   ├── config/         # Shared TypeScript, ESLint, & Tailwind configs
-│   └── utils/          # Core utilities & shared types
-├── docker-compose.yml  # Local services infrastructure
-├── package.json        # Root workspace configuration
-└── turbo.json          # Build pipeline orchestration
-```
-
----
+* 🚛 Vehicle and shipment management
+* 🆔 Vehicle-ID-based data retrieval
+* 📍 Live vehicle position calculation
+* 📊 Fleet utilization monitoring
+* ⚠️ Anomaly and overweight detection
+* 🚦 Dynamic delivery status
+* 📄 Live fleet data CSV export
+* 🤖 Vehicle-specific ETA prediction
+* 👤 User registration with bcrypt password hashing
+* 🗄️ PostgreSQL / Supabase integration
+* 📚 Interactive Swagger API documentation
 
 ## 🛠️ Tech Stack
 
-* **Language:** TypeScript
-* **Frontend:** Next.js, React, Tailwind CSS
-* **Backend:** Node.js (Express / NestJS), WebSockets
-* **Database & Caching:** PostgreSQL, Redis, Prisma ORM
-* **Monorepo Tools:** Turborepo, pnpm workspaces
-* **Deployment:** Render
+* **Python**
+* **FastAPI**
+* **Pydantic**
+* **PostgreSQL**
+* **Supabase**
+* **psycopg2**
+* **bcrypt**
+* **Pandas / ML pipeline**
+
+## 🔄 How It Works
+
+```text
+Vehicle ID
+    ↓
+FastAPI Backend
+    ↓
+Supabase / PostgreSQL
+    ↓
+Live Fleet Data
+    ↓
+ETA / ML Pipeline
+    ↓
+Prediction Report
+```
+
+The main ETA workflow accepts only the **Vehicle ID** and passes it to the prediction pipeline.
+
+## 🔌 API Endpoints
+
+| Method | Endpoint             | Purpose                         |
+| ------ | -------------------- | ------------------------------- |
+| `GET`  | `/`                  | API health/welcome              |
+| `POST` | `/create/table`      | Create fleet table              |
+| `POST` | `/create/entry`      | Add a vehicle                   |
+| `GET`  | `/info/{vehicle_id}` | Get vehicle information         |
+| `POST` | `/create/users`      | Create users table              |
+| `POST` | `/users/register`    | Register a user                 |
+| `GET`  | `/fleet/export-csv`  | Export live fleet data          |
+| `POST` | `/eta/output`        | Generate vehicle ETA prediction |
+
+The API prevents duplicate vehicle IDs and returns an appropriate error when a vehicle is not found.
+
+## 🤖 ETA Prediction
+
+The core workflow is:
+
+```text
+User enters Vehicle ID
+        ↓
+POST /eta/output
+        ↓
+Vehicle data lookup
+        ↓
+ML / ETA prediction
+        ↓
+Prediction report
+```
+
+Example request:
+
+```json
+{
+  "vehicle_id": "VEH_001"
+}
+```
+
+## 📄 Live Fleet Data
+
+FleetPulse generates a live fleet-status view and can export the current results as:
+
+```text
+fleet_live_status.csv
+```
+
+The export endpoint creates the live view, retrieves the records, generates the CSV, saves it locally, and returns it to the client.
+
+## 🔐 Configuration
+
+Create a `.env` file:
+
+```env
+DATABASE_URL=your_supabase_database_url
+```
+
+The backend uses this variable to connect to Supabase/PostgreSQL.
+
+**Never commit `.env` or database credentials to GitHub.**
+
+## ▶️ Run Locally
+
+```bash
+git clone <your-repository-url>
+cd FleetPulse
+
+python -m venv env
+env\Scripts\activate
+
+pip install -r requirements.txt
+
+uvicorn app.main:app --reload
+```
+
+API:
+
+```text
+http://127.0.0.1:8000
+```
+
+Swagger documentation:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+## ☁️ Deployment
+
+For production deployment, configure:
+
+```text
+DATABASE_URL
+```
+
+and use:
+
+```bash
+uvicorn app.main:app --host 0.0.0.0 --port $PORT
+```
+
+## 📌 Project Goal
+
+FleetPulse simplifies fleet monitoring and ETA prediction by allowing the system to identify a vehicle through its **Vehicle ID** and handle the underlying fleet-data and ML workflow automatically.
 
 ---
 
-## ⚡ Quick Start
-
-### Prerequisites
-
-* **Node.js** `>= 18.0.0`
-* **pnpm** `>= 8.0.0`
-* **Docker Desktop** (for local databases)
-
-### Setup
-
-#### 1. Clone the repository
-
-```bash
-git clone https://github.com/your-username/fleetpulse-monorepo.git
-cd fleetpulse-monorepo
-```
-
-#### 2. Install dependencies
-
-```bash
-pnpm install
-```
-
-#### 3. Set up environment variables
-
-```bash
-cp .env.example .env
-cp apps/api/.env.example apps/api/.env
-```
-
-#### 4. Spin up local infrastructure
-
-```bash
-docker-compose up -d
-```
-
-#### 5. Run database migrations
-
-```bash
-pnpm db:migrate
-```
-
-#### 6. Start development servers
-
-```bash
-pnpm dev
-```
-
----
-
-## 📜 Workspaces & Scripts
-
-| Command          | Action                                                 |
-| ---------------- | ------------------------------------------------------ |
-| `pnpm dev`       | Start all applications concurrently in watch mode      |
-| `pnpm build`     | Build all projects and shared packages for production  |
-| `pnpm test`      | Execute unit and integration tests across the monorepo |
-| `pnpm lint`      | Run linter and type-checking checks                    |
-| `pnpm db:studio` | Open interactive database UI                           |
-
----
-
-## 🤝 Contributing
-
-1. Create a branch:
-
-```bash
-git checkout -b feature/amazing-feature
-```
-
-2. Commit your changes:
-
-```bash
-git commit -m "feat: add amazing feature"
-```
-
-3. Push to the branch:
-
-```bash
-git push origin feature/amazing-feature
-```
-
-4. Open a **Pull Request**.
-
----
-
-## 📄 License
-
-This project is licensed under the [MIT License](LICENSE).
+**FleetPulse — Track. Analyze. Predict. 🚚**
