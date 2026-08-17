@@ -1,155 +1,141 @@
-# 🚚 FleetPulse
+```markdown
+<div align="center">
+  
+  # 🚛 OptiMarg
+  **Autonomous Fleet Intelligence & Logistics Command Center**
 
-**FleetPulse** is a FastAPI-based fleet management backend that connects fleet data, live vehicle tracking, and ML-powered ETA prediction.
+  <p align="center">
+    <img src="https://img.shields.io/badge/Smart%20India%20Hackathon-2026-FF9900?style=for-the-badge&logo=hackaday&logoColor=white" alt="SIH 2026" />
+    <img src="https://img.shields.io/badge/Team-Null_Terminators-8A2BE2?style=for-the-badge" alt="Null Terminators" />
+    <img src="https://img.shields.io/badge/Status-Active_Development-4CAF50?style=for-the-badge" alt="Status" />
+  </p>
 
-## ✨ Features
-
-* 🚛 Vehicle and shipment management
-* 🆔 Vehicle-ID-based data retrieval
-* 📍 Live vehicle position calculation
-* 📊 Fleet utilization monitoring
-* ⚠️ Anomaly and overweight detection
-* 🚦 Dynamic delivery status
-* 📄 Live fleet data CSV export
-* 🤖 Vehicle-specific ETA prediction
-* 👤 User registration with bcrypt password hashing
-* 🗄️ PostgreSQL / Supabase integration
-* 📚 Interactive Swagger API documentation
-
-## 🛠️ Tech Stack
-
-* **Python**
-* **FastAPI**
-* **Pydantic**
-* **PostgreSQL**
-* **Supabase**
-* **psycopg2**
-* **bcrypt**
-* **Pandas / ML pipeline**
-
-## 🔄 How It Works
-
-```text
-Vehicle ID
-    ↓
-FastAPI Backend
-    ↓
-Supabase / PostgreSQL
-    ↓
-Live Fleet Data
-    ↓
-ETA / ML Pipeline
-    ↓
-Prediction Report
-```
-
-The main ETA workflow accepts only the **Vehicle ID** and passes it to the prediction pipeline.
-
-## 🔌 API Endpoints
-
-| Method | Endpoint             | Purpose                         |
-| ------ | -------------------- | ------------------------------- |
-| `GET`  | `/`                  | API health/welcome              |
-| `POST` | `/create/table`      | Create fleet table              |
-| `POST` | `/create/entry`      | Add a vehicle                   |
-| `GET`  | `/info/{vehicle_id}` | Get vehicle information         |
-| `POST` | `/create/users`      | Create users table              |
-| `POST` | `/users/register`    | Register a user                 |
-| `GET`  | `/fleet/export-csv`  | Export live fleet data          |
-| `POST` | `/eta/output`        | Generate vehicle ETA prediction |
-
-The API prevents duplicate vehicle IDs and returns an appropriate error when a vehicle is not found.
-
-## 🤖 ETA Prediction
-
-The core workflow is:
-
-```text
-User enters Vehicle ID
-        ↓
-POST /eta/output
-        ↓
-Vehicle data lookup
-        ↓
-ML / ETA prediction
-        ↓
-Prediction report
-```
-
-Example request:
-
-```json
-{
-  "vehicle_id": "VEH_001"
-}
-```
-
-## 📄 Live Fleet Data
-
-FleetPulse generates a live fleet-status view and can export the current results as:
-
-```text
-fleet_live_status.csv
-```
-
-The export endpoint creates the live view, retrieves the records, generates the CSV, saves it locally, and returns it to the client.
-
-## 🔐 Configuration
-
-Create a `.env` file:
-
-```env
-DATABASE_URL=your_supabase_database_url
-```
-
-The backend uses this variable to connect to Supabase/PostgreSQL.
-
-**Never commit `.env` or database credentials to GitHub.**
-
-## ▶️ Run Locally
-
-```bash
-git clone <your-repository-url>
-cd FleetPulse
-
-python -m venv env
-env\Scripts\activate
-
-pip install -r requirements.txt
-
-uvicorn app.main:app --reload
-```
-
-API:
-
-```text
-http://127.0.0.1:8000
-```
-
-Swagger documentation:
-
-```text
-http://127.0.0.1:8000/docs
-```
-
-## ☁️ Deployment
-
-For production deployment, configure:
-
-```text
-DATABASE_URL
-```
-
-and use:
-
-```bash
-uvicorn app.main:app --host 0.0.0.0 --port $PORT
-```
-
-## 📌 Project Goal
-
-FleetPulse simplifies fleet monitoring and ETA prediction by allowing the system to identify a vehicle through its **Vehicle ID** and handle the underlying fleet-data and ML workflow automatically.
+  <p align="center">
+    <em>Transforming raw fleet telemetry into real-time actionable intelligence, optimized routing, and dynamic ETA predictions.</em>
+  </p>
+</div>
 
 ---
 
-**FleetPulse — Track. Analyze. Predict. 🚚**
+## 🚀 Overview
+
+Modern fleet operations generate massive volumes of vehicle and shipment data, but converting that data into real-time dispatch decisions remains a critical bottleneck. **OptiMarg** eliminates static schedules and fragmented visibility by accepting a single Vehicle ID to auto-fetch live telemetry. It seamlessly feeds this data into a dual-engine architecture: a **Machine Learning ETA Predictor** and a **Google OR-Tools Route Solver**, allowing dispatchers to execute the absolute least-cost multi-stop routes with high-confidence arrival times.
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend & UI
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![Leaflet](https://img.shields.io/badge/Leaflet-199900?style=for-the-badge&logo=Leaflet&logoColor=white)
+
+### Backend & Database
+![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+
+### AI, ML & Optimization Engines
+![Google OR-Tools](https://img.shields.io/badge/Google_OR--Tools-4285F4?style=for-the-badge&logo=google&logoColor=white)
+![Scikit-Learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)
+![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white)
+
+### Deployment & Version Control
+![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)
+![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)
+
+---
+
+## ✨ Key Features (USPs)
+
+* 🗺️ **Command Overview & Spatial Telemetry:** A live grid mapping active logistics corridors across India. Instantly track unit coordinates, transit lines, and operational status in real-time.
+* 🧠 **OR-Tools Optimization Center:** Execute constraint programming (`RoutingModel`, `CP-SAT Solver`) for multi-stop deliveries. Instantly calculates the mathematical least-cost sequence, detailing exact distance (km), time (min), and $CO_2$ (kg) saved per run.
+* ⏱️ **ML ETA Engine:** Replaces static timetables with dynamic forecasting. Evaluates real-time traffic delay factors (e.g., 1.2x) and historical models to generate highly accurate arrival timestamps with a model confidence score.
+* 💬 **Conversational AI Query Assistant:** A natural-language interface allowing dispatchers to instantly fetch diagnostics (e.g., *"Where is vehicle 8?"* or *"Check tire pressure"*), eliminating the need to hunt through data tables.
+* 🔍 **Intelligent Vehicle Inspector:** Granular, live diagnostic dashboard monitoring speed, fuel/battery capacity, tire vitals, and driver duty hours to proactively manage fatigue and safety.
+* 🗄️ **Admin & Dispatch Hub:** One-click confirmation for new route assignments, seamless user management, and direct CSV exports of raw fleet telemetry.
+
+---
+
+## ⚙️ System Architecture Flow
+
+```mermaid
+graph TD
+    A[Vehicle ID Input] --> B(Live Telemetry & Diagnostics API)
+    B --> C[FastAPI Backend]
+    
+    C --> D{Dual Core Processing Engine}
+    
+    D -->|Google OR-Tools| E[Routing Model & CP-SAT Solver]
+    D -->|Machine Learning| F[Traffic & ETA Predictor]
+    D -->|Rules Engine| G[Anomaly & Vitals Detection]
+    
+    E --> H[Optimized Dispatch & Route Matrix]
+    F --> I[High-Confidence Arrival Report]
+    G --> J[Driver Safety & Hardware Alerts]
+    
+    H --> K((OptiMarg Command Center))
+    I --> K
+    J --> K
+
+```
+
+---
+
+## 💻 Local Installation & Setup
+
+**1. Clone the Repository:**
+
+```bash
+git clone [https://github.com/your-username/optimarg.git](https://github.com/your-username/optimarg.git)
+cd optimarg
+
+```
+
+**2. Backend Setup (FastAPI):**
+
+```bash
+cd backend
+python -m venv venv
+source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+pip install -r requirements.txt
+uvicorn main:app --reload
+
+```
+
+**3. Frontend Setup (React):**
+
+```bash
+cd ../frontend
+npm install
+npm start
+
+```
+
+**4. Environment Variables:**
+Ensure you create a `.env` file in the root directory for your database credentials and API keys:
+
+```env
+DATABASE_URL=postgresql://user:password@localhost:5432/optimarg_db
+ML_API_KEY=your_key_here
+
+```
+
+---
+
+## 👥 The Team: Null Terminators
+
+Proudly built for **Smart India Hackathon 2026**.
+
+| Name | Role / Focus | GitHub Profile |
+| --- | --- | --- |
+| **Aditya Kumar Sharma** | [e.g., Full Stack / ML Engineer] | [@username](https://github.com/) |
+| **[Teammate 2]** | [e.g., Frontend Developer] | [@username](https://github.com/) |
+| **[Teammate 3]** | [e.g., Backend & DB] | [@username](https://github.com/) |
+| **[Teammate 4]** | [e.g., Cloud & DevOps] | [@username](https://github.com/) |
+| **[Teammate 5]** | [e.g., OR-Tools & Algorithms] | [@username](https://github.com/) |
+| **[Teammate 6]** | [e.g., UI/UX Design] | [@username](https://github.com/) |
+
+---
