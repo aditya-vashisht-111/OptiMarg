@@ -1,4 +1,3 @@
-```markdown
 <div align="center">
   
   # 🚛 OptiMarg
@@ -80,47 +79,47 @@ graph TD
     I --> K
     J --> K
 
-```
-
----
-
 ## 💻 Local Installation & Setup
 
-**1. Clone the Repository:**
+### Prerequisites
+* Python 3.10+
+* Node.js 18+
+* PostgreSQL
 
+### 1. Clone the Repository
 ```bash
 git clone [https://github.com/your-username/optimarg.git](https://github.com/your-username/optimarg.git)
 cd optimarg
-
 ```
 
-**2. Backend Setup (FastAPI):**
-
+### 2. Backend Setup (FastAPI)
 ```bash
 cd backend
 python -m venv venv
-source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-pip install -r requirements.txt
-uvicorn main:app --reload
 
+# Windows
+venv\Scripts\activate
+
+# Linux / macOS
+source venv/bin/activate
+
+pip install -r requirements.txt
+uvicorn main:app --reload --port 8000
 ```
 
-**3. Frontend Setup (React):**
-
+### 3. Frontend Setup (React)
 ```bash
 cd ../frontend
 npm install
 npm start
-
 ```
 
-**4. Environment Variables:**
-Ensure you create a `.env` file in the root directory for your database credentials and API keys:
-
+### 4. Environment Configuration
+Create a `.env` file in the root directory:
 ```env
 DATABASE_URL=postgresql://user:password@localhost:5432/optimarg_db
 ML_API_KEY=your_key_here
-
+PORT=8000
 ```
 
 ---
@@ -129,13 +128,17 @@ ML_API_KEY=your_key_here
 
 Proudly built for **Smart India Hackathon 2026**.
 
-| Name | Role / Focus | GitHub Profile |
-| --- | --- | --- |
-| **Aditya Kumar Sharma** | [e.g., Full Stack / ML Engineer] | [@username](https://github.com/) |
-| **[Teammate 2]** | [e.g., Frontend Developer] | [@username](https://github.com/) |
-| **[Teammate 3]** | [e.g., Backend & DB] | [@username](https://github.com/) |
-| **[Teammate 4]** | [e.g., Cloud & DevOps] | [@username](https://github.com/) |
-| **[Teammate 5]** | [e.g., OR-Tools & Algorithms] | [@username](https://github.com/) |
-| **[Teammate 6]** | [e.g., UI/UX Design] | [@username](https://github.com/) |
+| S.No | Name | Role / Domain | GitHub |
+| :---: | :--- | :--- | :--- |
+| 1 | **Aditya Kumar Sharma** | Team Lead | [B25BS1019] |
+| 2 | **[Teammate 2]** | [@username](https://github.com/) |
+| 3 | **[Teammate 3]** | [@username](https://github.com/) |
+| 4 | **[Teammate 4]** | [@username](https://github.com/) |
+| 5 | **[Teammate 5]** | [@username](https://github.com/) |
+| 6 | **[Teammate 6]** | [@username](https://github.com/) |
 
 ---
+
+<div align="center">
+  <sub>Built with ❤️ by Team Null Terminators | Smart India Hackathon 2026</sub>
+</div>
