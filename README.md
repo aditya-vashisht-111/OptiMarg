@@ -133,7 +133,7 @@ Proudly built for **Smart India Hackathon 2026**.
 | 1 | **Aditya Kumar Sharma** | Team Lead | [B25BS1019] |
 | 2 | **Arsh Zahid Shaikh** | [@username](https://github.com/arshshaikh16) | 
 | 3 | **Thalaj Bhati** | [@username](https://github.com/bhatithalaj) |
-| 4 | **Samiksha Kaushik** | Back-end Developer(https://github.com/SamikshaKaushik-developer) |
+| 4 | **Samiksha Kaushik** |@username(https://github.com/SamikshaKaushik-developer) | [B24BS2312]
 | 5 | **[Teammate 5]** | [@username](https://github.com/) |
 | 6 | **[Teammate 6]** | [@username](https://github.com/) |
 
